@@ -1,0 +1,24 @@
+services:
+  app:
+    image: app
+    restart: unless-stopped
+    ports:
+      - "80:3000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:Pfh1dmXf0qLm7MJANLvP@projectopdracht-sof2.cta42mwy8o6z.us-east-1.rds.amazonaws.com/postgres
+      - QUEUE_URL=https://sqs.us-east-1.amazonaws.com/730335374673/gabriel-projectopdracht-sof2
+      - BUCKET=gabriel-projectopdracht-sof2
+      - REGION=us-east-1
+    volumes:
+      - /home/ec2-user/.aws/credentials:/root/.aws/credentials:ro
+    
+    
+  img-resize:
+    image: img-resize
+    restart: unless-stopped
+    environment:
+      - QUEUE_URL=https://sqs.us-east-1.amazonaws.com/730335374673/gabriel-projectopdracht-sof2
+      - BUCKET=gabriel-projectopdracht-sof2
+      - REGION=us-east-1
+    volumes:
+      - /home/ec2-user/.aws/credentials:/root/.aws/credentials:ro
