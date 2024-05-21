@@ -1,5 +1,2 @@
-# Serverless directories
-node_modules/
 .env
-Dockerfile
-payload.json
+node_modules/

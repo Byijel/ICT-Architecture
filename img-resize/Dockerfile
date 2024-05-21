@@ -1,7 +1,8 @@
-FROM public.ecr.aws/lambda/nodejs:18
+FROM node:20-bullseye as build
+WORKDIR /img-resize
+COPY package.json .
+COPY package-lock.json .
+RUN npm install --frozen-lockfile
 
 COPY . .
-
-RUN npm install
-
-CMD ["app.handler"]
+CMD [ "node", "./index.js" ]
