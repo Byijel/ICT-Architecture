@@ -4,5 +4,5 @@ COPY package.json .
 COPY package-lock.json .
 RUN npm install --frozen-lockfile
 
-COPY . .
-CMD [ "node", "./index.js" ]
+COPY . . 
+CMD [ "node", "./index.js"]
